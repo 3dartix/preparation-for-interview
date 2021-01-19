@@ -18,8 +18,8 @@ public class StudentController {
     private final StudentService studentService;
 
     @Autowired
-    public StudentController(StudentService brandService) {
-        this.studentService = brandService;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @GetMapping
@@ -57,7 +57,7 @@ public class StudentController {
     }
 
     @DeleteMapping
-    public String deleteBrand(@RequestParam("id") Long id){
+    public String delete(@RequestParam("id") Long id){
         log.info("Delete student with id:" + id);
         studentService.deleteById(id);
         return "redirect:/student";
