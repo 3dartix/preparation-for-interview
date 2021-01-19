@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
+<body class="bg-light">
+
+<div class="d-flex">
+
+    <div class="content p-4">
+
+
+
+        <div class="row py-2">
+            <div class="col-12">
+                <!--            {/user/new} get запрос по текущему адресу-->
+                <a class="btn btn-primary" th:href="@{/student/new}">Add student</a>
+            </div>
+
+            <div class="col-12">
+                <table class="table table-bordered my-2">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr hidden>
+                        <td class="text-center" colspan="5">No data</td>
+                    </tr>
+                    <!--                в цикле выводим записи ${users} - имя указанное в скобках
+                    должно совпадать с именем указанном в контроллере -->
+                    <tr th:each="student : ${students}">
+                        <th scope="row" th:text="${student.id}">1</th>
+                        <td th:text="${student.name}">Alex</td>
+                        <td>
+                            <a class="btn btn-success"  th:href="@{/student/edit(id=${student.id})}" ><i class="fas fa-edit"></i></a>
+                            <form style="display: inline" th:method="delete" th:action="@{/student(id=${student.id})}">
+                                <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
